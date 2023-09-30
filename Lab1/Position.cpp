@@ -1,78 +1,62 @@
 #include <iostream>
 #include <string>
-#include "Employee.h"
-
+#include "Position.h"
 using namespace std;
 namespace Records {
-Employee::Employee()
-{
-mFirstName = "";
-mLastName = "";
-mEmployeeNumber = -1;
-mSalary = kDefaultStartingSalary;
-fHired = false;
-}
-void Employee::promote(int inRaiseAmount)
-{
-setSalary(getSalary() + inRaiseAmount);
-}
-void Employee::demote(int inDemeritAmount)
-{
-setSalary(getSalary() - inDemeritAmount);
-}
-void Employee::hire()
-{
-fHired = true;
-}
-void Employee::fire()
-{
-fHired = false;
-}
-void Employee::display()
-{
-cout << "Employee: " << getLastName() << ", " << getFirstName() << endl;
-cout << "-------------------------" << endl;
-cout << (fHired ? "Current Employee" : "Former Employee") << endl;
-cout << "Employee Number: " << getEmployeeNumber() << endl;
-cout << "Salary: $" << getSalary() << endl;
-cout << endl;
-}
-// Accessors and setters
-void Employee::setFirstName(string inFirstName)
-{
-mFirstName = inFirstName;
-}
-string Employee::getFirstName()
-{
-return mFirstName;
-}
-void Employee::setLastName(string inLastName)
+    Position::Position() {
+        mPositionTitle = "";
+        mOklad = kDefaultStartingOklad;
+        mObovyazky = "";
+        mVymogy = "";
+    }
 
-{
-mLastName = inLastName;
-}
-string Employee::getLastName()
-{
-return mLastName;
-}
-void Employee::setEmployeeNumber(int inEmployeeNumber)
-{
-mEmployeeNumber = inEmployeeNumber;
-}
-int Employee::getEmployeeNumber()
-{
-return mEmployeeNumber;
-}
-void Employee::setSalary(int inSalary)
-{
-mSalary = inSalary;
-}
-int Employee::getSalary()
-{
-return mSalary;
-}
-bool Employee::getIsHired()
-{
-return fHired;
-}
+    void Position::giveBonus(int inBonusSize) {
+        setOklad(getOklad() + inBonusSize);
+    }
+
+    void Position::givePenalty(int inPenaltySize) {
+        setOklad(getOklaf() - inPenaltySize);
+    }
+
+    void Position::display() {
+        cout << "Position: " << getPositionTitle() << endl;
+        cout << "-------------------------" << endl;
+        cout << "Oklad:" << getOklad() << " grn." << endl;
+        cout << "Obovyazky:" << getObovyazky() << endl;
+        cout << "Vymogy: " << getVymogy() << endl;
+        cout << endl;
+    }
+
+    // Accessors and setters
+    void Position::setPositionTitle(string inPositionTitle) {
+        mPositionTitle = inPositionTitle;
+    }
+
+    string Position::getPositionTitle() {
+        return mPositionTitle;
+    }
+
+    void Position::setOklad(int inOklad) {
+        mOklad = inOklad;
+    }
+
+    int Position::getOklad() {
+        return mOklad;
+    }
+
+    void Position::setObovyazky(string inObovtazky) {
+        mObovyazky = inObovyazky;
+    }
+
+    string Position::getObovyazky() {
+        return mObovyazky;
+    }
+
+    void Position::setVymogy(string inVymogy) {
+        mVymogy = inVymogy;
+    }
+
+    int Position::getVymogy() {
+        return mVymogy;
+    }
 }
