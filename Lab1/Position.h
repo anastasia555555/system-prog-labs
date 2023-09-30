@@ -1,30 +1,29 @@
 #include <iostream>
 namespace Records {
-const int kDefaultStartingSalary = 30000;
-class Employee
-{
-public:
-Employee();
-void promote(int inRaiseAmount = 1000);
-void demote(int inDemeritAmount = 1000);
-void hire(); // hires or re-hires the employee
-void fire(); // dismisses the employee
-void display(); // outputs employee info to the console
-// Accessors and setters
-void setFirstName(std::string inFirstName);
-std::string getFirstName();
-void setLastName(std::string inLastName);
-std::string getLastName();
-void setEmployeeNumber(int inEmployeeNumber);
-int getEmployeeNumber();
-void setSalary(int inNewSalary);
-int getSalary();
-bool getIsHired();
-private:
-std::string mFirstName;
-std::string mLastName;
-int mEmployeeNumber;
-int mSalary;
-bool fHired;
-};
+    const int kDefaulPochatkovyiOklad = 3000;
+    class Position {
+        public:
+            Position();
+            void giveBonus(int inBonusSize = 1000); //gives a bonus
+            void givePenalty(int inPenaltySize = 500); //sets a penalty
+            void display(); //outputs info to the console
+
+            // Accessors and setters
+            void setPositionTitle(std::string inPositionTitle);
+            std::string getPositionTitle();
+            void setPositionNumber(int inPositionNumber);
+            int getPositionNumber();
+            void setOklad(int inOklad);
+            int getOklad();
+            void setObovyazky(std::string inObovyazky);
+            std::string getObovyazky();
+            void setVymogy(std::string Vymogy);
+            std::string getVymogy();
+        private:
+            std::string mPositionTitle;
+            int mPositionNumber;
+            int mOklad;
+            std::string mObovyazky;
+            std::string mVymogy;
+    };
 }
