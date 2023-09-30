@@ -1,24 +1,23 @@
 // Database.h
 
 #include <iostream>
-#include "Employee.h"
+#include "Position.h"
 namespace Records {
-const int kMaxEmployees = 100;
-const int kFirstEmployeeNumber = 1000;
-class Database
-{
-public:
-Database();
-~Database();
-Employee& addEmployee(std::string inFirstName, std::string inLastName);
-Employee& getEmployee(int inEmployeeNumber);
-Employee& getEmployee(std::string inFirstName, std::string inLastName);
-void displayAll();
-void displayCurrent();
-void displayFormer();
-protected:
-Employee mEmployees[kMaxEmployees];
-int mNextSlot;
-int mNextEmployeeNumber;
-};
+    const int kMaxPositions = 30;
+    const int kFirstPositionNumber = 100;
+    class Database {
+        public:
+             Database();
+             ~Database();
+             Position& addPosition(std::string inPositionTitle, int inOklad, std::string inObovyazky, std::string inVymogy);
+             Position& getPosition(int inPositionNumber);
+             Position& getPosition(std::string inPositionTitle);
+             void displayAll();
+             void displayCurrent();
+             void displayFormer();
+        protected:
+             Position mPositions[kMaxPositions];
+             int mNextSlot;
+             int mNextPositionNumber;
+    };
 }
