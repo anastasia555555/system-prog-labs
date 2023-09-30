@@ -3,8 +3,8 @@
 #include <iostream>
 #include "Position.h"
 namespace Records {
+    const int kMaxPositions = 30;
     class Database {
-        const int kMaxPositions = 30;
         public:
              Database();
              ~Database();
