@@ -11,8 +11,6 @@ namespace Records {
             // Accessors and setters
             void setPositionTitle(std::string inPositionTitle);
             std::string getPositionTitle();
-            void setPositionNumber(int inPositionNumber);
-            int getPositionNumber();
             void setOklad(int inOklad);
             int getOklad();
             void setObovyazky(std::string inObovyazky);
@@ -21,7 +19,6 @@ namespace Records {
             std::string getVymogy();
         private:
             std::string mPositionTitle;
-            int mPositionNumber;
             int mOklad;
             std::string mObovyazky;
             std::string mVymogy;
