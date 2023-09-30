@@ -3,14 +3,13 @@
 #include <iostream>
 #include "Position.h"
 namespace Records {
-    const int kMaxPositions = 30;
-    const int kFirstPositionNumber = 100;
     class Database {
+        const int kMaxPositions = 30;
         public:
              Database();
              ~Database();
              Position& addPosition(std::string inPositionTitle, int inOklad, std::string inObovyazky, std::string inVymogy);
-             Position& getPosition(int inPositionNumber);
+             Position& getPosition(std::string inObovyazky);
              Position& getPosition(std::string inPositionTitle);
              void displayAll();
              void displayCurrent();
