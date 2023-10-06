@@ -2,106 +2,110 @@
 #include <stdexcept>
 #include <string>
 #include "Database.h"
+
 using namespace std;
 using namespace Records;
+
 int displayMenu();
-void doHire(Database& inDB);
-void doFire(Database& inDB);
-void doPromote(Database& inDB);
-void doDemote(Database& inDB);
+void doGiveBonus(Database& inDB);
+void doGivePenalty(Database& inDB);
+void doAddPosition(Database& inDB);
 
-int main(int argc, char** argv)
-{
-Database employeeDB;
-bool done = false;
-while (!done) {
-int selection = displayMenu();
-switch (selection) {
-case 1:
-doHire(employeeDB);
-break;
-case 2:
-doFire(employeeDB);
-break;
-case 3:
-doPromote(employeeDB);
-break;
-case 4:
-employeeDB.displayAll();
-break;
-case 5:
-employeeDB.displayCurrent();
-break;
-case 6:
-employeeDB.displayFormer();
-break;
-case 0:
-done = true;
-break;
-default:
-cerr << "Unknown command." << endl;
+int main(int argc, char** argv) {
+	Database positionsDB;
+	bool done = false;
+	while (!done) {
+		int selection = displayMenu();
+		switch (selection) {
+			case 1:
+				doGiveBonus(positionsDB);
+				break;
+			case 2:
+				doGivePenalty(positionsDB);
+				break;
+			case 3:
+				doAddPosition(positionsDB); 
+				break;
+			case 4:
+				positionsDB.displayAll();
+				break;
+			case 0:
+				done = true;
+				break;
+			default:
+				cerr << "Unknown command." << endl;
+		}
+	}
 }
-}
-}
-int displayMenu()
-{
-int selection;
-cout << endl;
-cout << "Employee Database" << endl;
-cout << "-----------------" << endl;
-cout << "1) Hire a new employee" << endl;
-cout << "2) Fire an employee" << endl;
-cout << "3) Promote an employee" << endl;
-cout << "4) List all employees" << endl;
-cout << "5) List all current employees" << endl;
-cout << "6) List all previous employees" << endl;
-cout << "0) Quit" << endl;
-cout << endl;
 
-cout << "---> ";
-cin >> selection;
-return selection;
-}
-void doHire(Database& inDB)
-{
-string firstName;
-string lastName;
-cout << "First name? ";
-cin >> firstName;
-cout << "Last name? ";
-cin >> lastName;
-try {
-inDB.addEmployee(firstName, lastName);
-} catch (std::exception ex) {
-cerr << "Unable to add new employee!" << endl;
-}
-}
-void doFire(Database& inDB)
-{
-int employeeNumber;
-cout << "Employee number? ";
-cin >> employeeNumber;
-try {
-Employee& emp = inDB.getEmployee(employeeNumber);
-emp.fire();
-cout << "Employee " << employeeNumber << " has been terminated." << endl;
-} catch (std::exception ex) {
-cerr << "Unable to terminate employee!" << endl;
-}
-}
-void doPromote(Database& inDB)
-{
-int employeeNumber;
-int raiseAmount;
-cout << "Employee number? ";
-cin >> employeeNumber;
-cout << "How much of a raise? ";
-cin >> raiseAmount;
-try {
+int displayMenu() {
+	int selection;
+	cout << endl;
+	cout << "Positions Database" << endl;
+	cout << "-----------------" << endl;
+	cout << "1) Give bonus to a position" << endl;
+	cout << "2) Assign penalty to a position" << endl;
+	cout << "3) Add a position" << endl;
+	cout << "4) List all positions" << endl;
+	cout << "0) Quit" << endl;
+	cout << endl;
 
-Employee& emp = inDB.getEmployee(employeeNumber);
-emp.promote(raiseAmount);
-} catch (...) {
-cerr << "Unable to promote employee!" << endl;
+	cout << "---> ";
+	cin >> selection;
+	return selection;
 }
+
+void doAddPosition(Database& inDB) {
+	string PositionTitle;
+	int Oklad;
+	string Obovyazky;
+	string Vymogy;
+	cout << "What is the title? ";
+	cin >> PositionTitle;
+	cout << "What salary? ";
+	cin >> Oklad;
+	cout << "What are the responsibilities? ";
+	cin >> Obovyazky;
+	cout << "What requirements? ";
+	cin >> Vymogy;
+	try {
+		inDB.addEmployee(PositionTitle, Oklad, Obovyazky, Vymogy);
+	} 
+	catch (std::exception ex) {
+		cerr << "Unable to add a position!" << endl;
+	}
+}
+
+void doGiveBonus(Database& inDB) {
+	int positionNumber;
+	int bonusSize;
+	cout << "Position code? ";
+	cin >> positionNumber;
+	cout << "Bonus amount? ";
+	cin >> bonusSize;
+	try {
+	Position& emp = inDB.getPosition(positionNumber);
+	emp.giveBonus(bonusSize);
+	cout << "With bonus " << emp.getPositionTitle() << "'s new salary is " << emp.getOklad() << "." << endl;
+	} 
+	catch (std::exception ex) {
+	cerr << "Unable to terminate position!" << endl;
+	}
+}
+
+void doGivePenalty(Database& inDB) {
+	int positionNumber;
+	int penaltySize;
+	cout << "Position code? ";
+	cin >> positionNumber;
+	cout << "Penalty amount? ";
+	cin >> penaltySize;
+	try {
+	Position& emp = inDB.getPosition(positionNumber);
+	emp.givePenalty(penaltySize);
+	cout << "With penalty " << emp.getPositionTitle() << "'s new salary is " << emp.getOklad() << "." << endl;
+	} 
+	catch (std::exception ex) {
+	cerr << "Unable to terminate position!" << endl;
+	}
 }

@@ -1,10 +1,12 @@
 #include <iostream>
 #include <string>
 #include "Position.h"
+
 using namespace std;
 namespace Records {
     Position::Position() {
         mPositionTitle = "";
+		mPositionNumber = -1;
         mOklad = kDefaultStartingOklad;
         mObovyazky = "";
         mVymogy = "";
@@ -15,14 +17,15 @@ namespace Records {
     }
 
     void Position::givePenalty(int inPenaltySize) {
-        setOklad(getOklaf() - inPenaltySize);
+        setOklad(getOklad() - inPenaltySize);
     }
 
     void Position::display() {
         cout << "Position: " << getPositionTitle() << endl;
+		cout << "Position Code: " << getPositionNumber() << endl;
         cout << "-------------------------" << endl;
-        cout << "Oklad:" << getOklad() << " grn." << endl;
-        cout << "Obovyazky:" << getObovyazky() << endl;
+        cout << "Oklad: " << getOklad() << " grn." << endl;
+        cout << "Obovyazky: " << getObovyazky() << endl;
         cout << "Vymogy: " << getVymogy() << endl;
         cout << endl;
     }
@@ -35,6 +38,14 @@ namespace Records {
     string Position::getPositionTitle() {
         return mPositionTitle;
     }
+
+	void Position::setPositionNumber(int inPositionNumber) {
+		mPositionNumber = inPositionNumber;
+	}
+	
+	int Position::getPositionNumber() {
+		return mPositionNumber;
+	}
 
     void Position::setOklad(int inOklad) {
         mOklad = inOklad;

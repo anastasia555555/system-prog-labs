@@ -1,7 +1,12 @@
 #include <iostream>
+#include <string>
+
+using namespace std;
 namespace Records {
-    const int kDefaulPochatkovyiOklad = 3000;
-    class Position {
+    
+	const int kDefaulPochatkovyiOklad = 3000;
+    
+	class Position {
         public:
             Position();
             void giveBonus(int inBonusSize = 1000); //gives a bonus
@@ -9,18 +14,26 @@ namespace Records {
             void display(); //outputs info to the console
 
             // Accessors and setters
-            void setPositionTitle(std::string inPositionTitle);
-            std::string getPositionTitle();
-            void setOklad(int inOklad);
+            void setPositionTitle(string inPositionTitle);
+            string getPositionTitle();
+    
+			void setPositionNumber(int inPositionNumber);
+			int getPositionNumber();
+	
+			void setOklad(int inOklad);
             int getOklad();
-            void setObovyazky(std::string inObovyazky);
-            std::string getObovyazky();
-            void setVymogy(std::string Vymogy);
-            std::string getVymogy();
+            
+			void setObovyazky(string inObovyazky);
+            string getObovyazky();
+            
+			void setVymogy(string inVymogy);
+            string getVymogy();
+			
         private:
-            std::string mPositionTitle;
+            string mPositionTitle;
+			int mPositionNumber;
             int mOklad;
-            std::string mObovyazky;
-            std::string mVymogy;
+            string mObovyazky;
+            string mVymogy;
     };
 }
