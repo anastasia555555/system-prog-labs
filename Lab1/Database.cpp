@@ -1,43 +1,41 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <list>
 #include "Database.h"
+#include "Position.h"
 
-using namespace std;
 namespace Records {
-    Database::Database() {
-        mNextSlot = 0;
-        mNextPositionNumber = kFirstPositionNumber;
-    }
-    Database::~Database() { }
-    
-    Position& Database::addPosition(string inPositionTitle, int inOklad, string inObovyazky, string inVymogy) {
-        if (mNextSlot >= kMaxPositions) {
-            cerr << "Only 30 positions are allowed." << endl;
-            throw exception();
+    class Database {
+    public:
+        void Database::addPosition(const Position& position) {
+            positions.push_back(position);
         }
-    
-		Position& addedPosition = mPositions[mNextSlot++];
-		addedPosition.setPositionTitle(inPositionTitle);
-		addedPosition.setOklad(inOklad);
-		addedPosition.setPositionNumber(mNextPositionNumber++);
-		
-		return addedPosition;
-    }
-    
-    Position& Database::getPosition(string inPositionTitle) {
-        for (int i = 0; i < mNextSlot; i++) {
-            if (mPositions[i].getPositionTitle() == inPositionTitle) {
-                return mPositions[i];
-            }
-         }
-         cerr << "No match with title: " << inPositionTitle << endl;
-         throw exception();
-    }
 
-    void Database::displayAll() {
-        for (int i = 0; i < mNextSlot; i++) {
-            mPositions[i].display();
+        Position Database::getPosition(int positionId) const {
+            auto it = std::find_if(positions.begin(), positions.end(),
+                [positionId](const Position& pos) { return pos.getPositionId() == positionId; });
+
+            if (it != positions.end()) {
+                return *it;
+            }
+            else {
+                return Position();
+            }
         }
-    }
+
+        void Database::removePosition(int positionId) {
+            positions.remove_if([positionId](const Position& pos) { return pos.getPositionId() == positionId; });
+        }
+
+        void Database::displayAllPositions() const {
+            for (const auto& position : positions) {
+                position.displayPositionDetails();
+                std::cout << "---------------------\n";
+            }
+        }
+        
+    protected:
+        std::list<Position> positions;
+    };
 }

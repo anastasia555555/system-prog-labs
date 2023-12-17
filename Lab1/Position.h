@@ -1,39 +1,48 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
 namespace Records {
     
-	const int kDefaulPochatkovyiOklad = 3000;
+	const double kDefaultSalary = 3000.0;
     
 	class Position {
         public:
             Position();
-            void giveBonus(int inBonusSize = 1000); //gives a bonus
-            void givePenalty(int inPenaltySize = 500); //sets a penalty
-            void display(); //outputs info to the console
+            Position(int id, const std::string& name, double salary, const std::string& responsibilities, const std::string& requirements);
+            
+            void giveBonus(int bonus);              //gives a bonus
+            void givePenalty(int penalty);          //sets a penalty
+            void displayPositionDetails() const;    //displays position details
 
             // Accessors and setters
-            void setPositionTitle(string inPositionTitle);
-            string getPositionTitle();
-    
-			void setPositionNumber(int inPositionNumber);
-			int getPositionNumber();
-	
-			void setOklad(int inOklad);
-            int getOklad();
-            
-			void setObovyazky(string inObovyazky);
-            string getObovyazky();
-            
-			void setVymogy(string inVymogy);
-            string getVymogy();
+            int getPositionId() const;
+            void setPositionId(int id);
+
+            std::string getPositionName() const;
+            void setPositionName(const std::string& name);
+
+            double getSalary() const;
+            void setSalary(double salary);
+
+            double getBonus() const;
+            void setBonus(int bonus);
+
+            double getPenalty() const;
+            void setPenalty(int penalty);
+
+            std::string getResponsibility() const;
+            void setResponsibility(const std::string& responsibilities);
+
+            std::string getRequirements() const;
+            void setRequirements(const std::string& requirements);
 			
         private:
-            string mPositionTitle;
-			int mPositionNumber;
-            int mOklad;
-            string mObovyazky;
-            string mVymogy;
+            int mPositionId;
+            std::string mPositionName;
+            double mSalary;
+            double mBonus;
+            double mPenalty;
+            std::string mResponsibility;
+            std::string mRequirements;
     };
 }
