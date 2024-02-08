@@ -25,7 +25,7 @@ typedef struct {
 } \
 } while(0)
 
-// макрос Виводу значень до консоли
+// макрос Виводу значень до консолі
 #define ilprint(list_head) \
     do { \
         int_node_t *__ptr; \
@@ -37,7 +37,6 @@ typedef struct {
     } while(0)
 
 // Ініціалізація списку
-//https://elixir.bootlin.com/linux/latest/source/include/linux/list.h#L714
 static struct list_head int_list = LIST_HEAD_INIT(int_list);
 
 // Функція для зсуву списку праворуч
